@@ -20,7 +20,7 @@ class AuthController {
     }
   }
 
-  static async Login(req, res) {
+  static async Login(req, res, next) {
     try {
       const { email, password } = req.body;
       if (!email) throw { name: "EmailBadReq" };
