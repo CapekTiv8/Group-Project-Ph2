@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const errorHandler = require("./middlewares/errorHandler");
-const AuthController = require("./controllers/AuthController");
-const auth = require("./middlewares/auth");
+const AuthController = require("./controller/AuthController");
+const auth = require("./middlewares/authentication");
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
