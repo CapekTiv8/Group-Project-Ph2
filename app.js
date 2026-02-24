@@ -21,10 +21,9 @@ app.get("/", (req, res) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.post("/register", AuthController.Register);
+app.post("/login", AuthController.Login);
 app.use(auth);
-app.post("/auth/register", AuthController.Register);
-app.post("/auth/login", AuthController.Login);
-
 app.use(errorHandler);
 
 let chats = []
