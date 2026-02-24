@@ -4,7 +4,7 @@ const errorHandler = (error, req, res, next) => {
 
   if (
     error.name === "SequelizeConstraintError" ||
-    error.name === "SequelizeValidationError"
+    error.name === "SequelizeUniqueConstraintError"
   ) {
     status = 400;
     message = error.errors[0].message;
@@ -30,12 +30,12 @@ const errorHandler = (error, req, res, next) => {
     message = "Invalid email/password";
   }
 
-  if (error.name === "You are not authorized") {
+  if (error.name === "Unauthorized") {
     status = 401;
     message = "forbidden";
   }
 
-  if (error.name === "Invalid token") {
+  if (error.name === "JsonWebTokenError") {
     status = 401;
     message = "Unauthorized";
   }

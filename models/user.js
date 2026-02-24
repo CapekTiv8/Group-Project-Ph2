@@ -57,8 +57,8 @@ module.exports = (sequelize, DataTypes) => {
           notNull: {
             msg: "Password Required",
           },
-          min: {
-            args: 5,
+          len: {
+            args: [5, 255],
             msg: "Password min 5 character",
           },
         },
@@ -74,7 +74,7 @@ module.exports = (sequelize, DataTypes) => {
           ins.password = hash;
         },
       },
-    }
+    },
   );
   return User;
 };
