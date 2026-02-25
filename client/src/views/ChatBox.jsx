@@ -100,8 +100,8 @@ export default function ChatBox() {
   if (status === 'waiting') {
     return (
       <div className="w-full h-screen flex flex-col items-center justify-center bg-[#030303]">
-        <div className="absolute -top-10 -right-10 w-[72%] h-12 bg-gray-500 rounded-full opacity-90 blur-[100px]" />
-        <div className="absolute -bottom-10 -left-10 w-[72%] h-8 bg-blue-500 rounded-full opacity-90 blur-[100px]" />
+        <div className="absolute -top-10 right-10 w-[72%] h-12 bg-gray-500 rounded-full opacity-90 blur-[100px]" />
+        <div className="absolute bottom-8 -left-10 w-[72%] h-8 bg-blue-500 rounded-full opacity-90 blur-[100px]" />
         <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-6" />
         <p className="text-zinc-300 text-lg">Mencari partner...</p>
         <button
