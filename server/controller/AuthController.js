@@ -35,6 +35,7 @@ class AuthController {
         throw { name: "LoginError" };
       const payload = {
         id: user.id,
+        username: user.username,
         email: user.email,
       };
       const access_token = signToken(payload);
