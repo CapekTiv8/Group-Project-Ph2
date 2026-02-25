@@ -10,7 +10,7 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: 'https://eyougle.vercel.app/', //! Adjust this to your frontend URL
+    origin: 'https://eyougle.vercel.app', //! Adjust this to your frontend URL
     methods: ['GET', 'POST'],
   },
 });
