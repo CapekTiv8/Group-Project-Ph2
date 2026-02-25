@@ -13,7 +13,7 @@ const io = new Server(server, {
   },
 });
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 const errorHandler = require('./middlewares/errorHandler');
 const AuthController = require('./controller/AuthController');
 const auth = require('./middlewares/authentication');
