@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import axios from 'axios';
 import Toastify from 'toastify-js';
 
@@ -61,7 +61,7 @@ export default function Login() {
         </h2>
         <p className="text-gray-500 text-center mt-2">Login to your account</p>
 
-        <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
+        <form className="mt-6 space-y-4" onSubmit={handleLogin}>
           <div>
             <label className="block text-gray-700 font-medium mb-1">
               Email
@@ -96,34 +96,15 @@ export default function Login() {
             <hr className="flex-1 border-gray-300" />
           </div>
 
-          {/* Google Login Button */}
-          <div className="flex justify-center">
-            <GoogleLogin
-              onSuccess={handleGoogleLogin}
-              onError={() => {
-                Toastify({
-                  text: 'Google Login failed',
-                  duration: 3000,
-                  gravity: 'bottom',
-                  position: 'right',
-                  style: {
-                    background: '#F87171',
-                    color: 'black',
-                    borderRadius: '8px',
-                  },
-                }).showToast();
-              }}
-            />
-          </div>
         </form>
 
         <p className="text-center text-gray-600 text-sm mt-6">
           Don't have an account?{' '}
-          <a
-            href="/register"
+          <Link
+            to="/register"
             className="text-green-600 font-semibold hover:underline">
             Register
-          </a>
+          </Link>
         </p>
       </div>
     </div>
