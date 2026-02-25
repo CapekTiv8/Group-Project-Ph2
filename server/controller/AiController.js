@@ -22,7 +22,7 @@ class AiController {
         },
         {
           role: "user",
-          content: message + 'berikut adalah message message sebelumnya: ' + chatString,
+          content: message + 'berikut adalah message message sebelumnya dari yang lain: ' + chatString,
         },
       ],
       max_tokens: 100,

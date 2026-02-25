@@ -39,14 +39,17 @@ io.on('connection', async (socket) => {
 
   // chat:message 2. receive message from client
   socket.on('chat:message', async (msg) => {
-    console.log('message: ' + msg);
+    console.log(msg);
     // chat:message 3. save message to database (here we just push to an array for demonstration)
     chats.push(msg); //!change this to save in database
-    if (msg.includes('@AI')) {
+    if (msg.text.includes('@AI')) {
       // const response = await AiController.respond(msg)
+      const formattedMessages = chats.map(e => {
+        return `${e.username}: ${e.text}`;
+      })
 
-      let response = await AiController.getReply(chats, msg);
-      chats.push(response);
+      let response = await AiController.getReply(formattedMessages, msg);
+      chats.push({username: 'AI', text: response, timestamp: new Date()});
       console.log(response)
     }
     // chat:message 4. Broadcast all messages to all connected clients
