@@ -1,43 +1,45 @@
 const errorHandler = (error, req, res, next) => {
-  let message = "Internal Server Error";
+  console.log(error);
+
+  let message = 'Internal Server Error';
   let status = 500;
 
   if (
-    error.name === "SequelizeConstraintError" ||
-    error.name === "SequelizeUniqueConstraintError"
+    error.name === 'SequelizeConstraintError' ||
+    error.name === 'SequelizeUniqueConstraintError'
   ) {
     status = 400;
     message = error.errors[0].message;
   }
 
-  if (error.name === "EmailBadReq") {
+  if (error.name === 'EmailBadReq') {
     status = 400;
-    message = "Email is Required";
+    message = 'Email is Required';
   }
 
-  if (error.name === "NameBadReq") {
+  if (error.name === 'NameBadReq') {
     status = 400;
-    message = "Name is Required";
+    message = 'Name is Required';
   }
 
-  if (error.name === "PassBadReq") {
+  if (error.name === 'PassBadReq') {
     status = 400;
-    message = "Password is Required";
+    message = 'Password is Required';
   }
 
-  if (error.name === "LoginError") {
+  if (error.name === 'LoginError') {
     status = 400;
-    message = "Invalid email/password";
+    message = 'Invalid email/password';
   }
 
-  if (error.name === "Unauthorized") {
+  if (error.name === 'Unauthorized') {
     status = 401;
-    message = "forbidden";
+    message = 'forbidden';
   }
 
-  if (error.name === "JsonWebTokenError") {
+  if (error.name === 'JsonWebTokenError') {
     status = 401;
-    message = "Unauthorized";
+    message = 'Unauthorized';
   }
 
   res.status(status).json({ message });
