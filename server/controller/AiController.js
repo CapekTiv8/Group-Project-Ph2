@@ -6,7 +6,7 @@ const groq = new Groq({
 
 class AiController {
   static async getReply(chats, message) {
-    const chatString = chats.join(" | ");
+    const chatString = chats.join(" || ");
     const completion = await groq.chat.completions.create({
       model: "llama-3.3-70b-versatile",
       messages: [
