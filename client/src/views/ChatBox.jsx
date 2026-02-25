@@ -10,8 +10,8 @@ export default function ChatBox() {
   const [chats, setChats] = useState([]);
   const [room, setRoom] = useState(null);
   const [status, setStatus] = useState('idle'); // idle | waiting | matched
-  const username = useContext(useAuth()).user.username;
-  const navigate = useNavigate();
+  const username = localStorage.getItem('username');
+  const navigate = useNavigate(); 
 
   function findPartner() {
     socket.emit('find:partner');
