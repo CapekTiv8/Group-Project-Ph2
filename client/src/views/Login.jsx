@@ -54,39 +54,77 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center w-full">
-      <div className="px-8 py-6 w-1/3 bg-blue-400 border-2 border-black rounded-lg shadow-[2px_2px_0px_rgba(0,0,0,1)]">
-        <h1 className="text-2xl font-bold text-center mb-4">Login</h1>
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md">
+        <h2 className="text-2xl font-bold text-gray-800 text-center">
+          Welcome Back
+        </h2>
+        <p className="text-gray-500 text-center mt-2">Login to your account</p>
 
-        <form onSubmit={handleLogin}>
-          <div className="mb-4">
-            <label className="block text-sm font-medium">Email Address</label>
+        <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">
+              Email
+            </label>
             <input
               type="email"
-              className="bg-white rounded-lg w-full px-3 py-2 border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)]"
-              placeholder="your@email.com"
-              autoComplete="current-email"
-              value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required
+              placeholder="Enter your email"
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-
-          <div className="mb-4">
-            <label className="block text-sm font-medium">Password</label>
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">
+              Password
+            </label>
             <input
               type="password"
-              className="bg-white rounded-lg w-full px-3 py-2 border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)]"
               placeholder="Enter your password"
-              autoComplete="current-password"
-              value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
+          <button
+            type="submit"
+            className="w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition">
+            Login
+          </button>
 
-          <Button nameProp={'Login'} />
+          <div className="flex items-center gap-3 my-4">
+            <hr className="flex-1 border-gray-300" />
+            <span className="text-gray-400 text-sm">OR</span>
+            <hr className="flex-1 border-gray-300" />
+          </div>
+
+          {/* Google Login Button */}
+          <div className="flex justify-center">
+            <GoogleLogin
+              onSuccess={handleGoogleLogin}
+              onError={() => {
+                Toastify({
+                  text: 'Google Login failed',
+                  duration: 3000,
+                  gravity: 'bottom',
+                  position: 'right',
+                  style: {
+                    background: '#F87171',
+                    color: 'black',
+                    borderRadius: '8px',
+                  },
+                }).showToast();
+              }}
+            />
+          </div>
         </form>
+
+        <p className="text-center text-gray-600 text-sm mt-6">
+          Don't have an account?{' '}
+          <a
+            href="/register"
+            className="text-green-600 font-semibold hover:underline">
+            Register
+          </a>
+        </p>
       </div>
     </div>
   );
