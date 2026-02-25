@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { io } from 'socket.io-client';
 
-const socket = io('http://localhost:3000');
+const socket = io('https://group-project-ph2-production.up.railway.app');
 
 export default function ChatBox() {
   const [text, setText] = useState('');
