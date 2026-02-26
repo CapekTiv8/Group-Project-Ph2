@@ -55,7 +55,7 @@ export default function Login() {
 
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md">
+      <div className="bg-white dark:bg-black  shadow-lg rounded-2xl p-8 w-full max-w-md">
         <h2 className="text-2xl font-bold text-gray-800 text-center">
           Welcome Back
         </h2>

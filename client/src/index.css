@@ -1,1 +1,10 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* <html >className="dark"
+  <body>
+    <div class="bg-white dark:bg-black">
+      <!-- ... -->
+    </div>
+  </body>
+</html> */

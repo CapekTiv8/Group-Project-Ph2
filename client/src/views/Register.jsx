@@ -43,7 +43,7 @@ export default function Register() {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-white">
-      <div className="w-3/4 max-w-md p-8 bg-white shadow-lg rounded-lg">
+      <div className="w-3/4 max-w-md p-8 bg-white dark:bg-black shadow-lg rounded-lg">
         <h2 className="text-2xl font-bold text-green-600 mb-6 text-center">
           Sign up
         </h2>
