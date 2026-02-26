@@ -2,10 +2,12 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { io } from 'socket.io-client';
 import { useAuth } from '../context/LoginContext';
+import { useDarkMode } from '../context/Darkmode';
 
 const socket = io('https://group-project-ph2-production.up.railway.app');
 
 export default function ChatBox() {
+  const {isDark, toggleTheme} = useDarkMode();
   const [text, setText] = useState('');
   const [chats, setChats] = useState([]);
   const [room, setRoom] = useState(null);
@@ -75,6 +77,7 @@ export default function ChatBox() {
   if (status === 'idle') {
     return (
       <div className="w-full h-screen flex flex-col items-center justify-center bg-zinc-100 dark:bg-[#030303]">
+        <button className='bg-blue-500 text-white rounded-xl p-2 fixed left-5 top-8' onClick={toggleTheme}>{isDark ? "Light" : "Dark"}</button>
         <div className="absolute -top-10 right-10 w-[72%] h-12 bg-zinc-300 dark:bg-gray-500 rounded-full opacity-90 blur-[100px]" />
         <div className="absolute bottom-8 -left-10 w-[72%] h-8 bg-blue-500 rounded-full opacity-90 blur-[100px]" />
         <h1 className="text-zinc-900 dark:text-white text-2xl font-bold mb-2">Random Chat</h1>
@@ -101,6 +104,7 @@ export default function ChatBox() {
   if (status === 'waiting') {
     return (
       <div className="w-full h-screen flex flex-col items-center justify-center bg-zinc-100 dark:bg-[#030303]">
+        <button className='bg-blue-500 text-white rounded-xl p-2 fixed left-5 top-8' onClick={toggleTheme}>{isDark ? "Light" : "Dark"}</button>
         <div className="absolute -top-10 right-10 w-[72%] h-12 bg-zinc-300 dark:bg-gray-500 rounded-full opacity-90 blur-[100px]" />
         <div className="absolute bottom-8 -left-10 w-[72%] h-8 bg-blue-500 rounded-full opacity-90 blur-[100px]" />
         <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-6" />
