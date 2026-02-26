@@ -74,11 +74,11 @@ export default function ChatBox() {
 
   if (status === 'idle') {
     return (
-      <div className="w-full h-screen flex flex-col items-center justify-center bg-[#030303]">
-        <div className="absolute -top-10 right-10 w-[72%] h-12 bg-gray-500 rounded-full opacity-90 blur-[100px]" />
+      <div className="w-full h-screen flex flex-col items-center justify-center bg-zinc-100 dark:bg-[#030303]">
+        <div className="absolute -top-10 right-10 w-[72%] h-12 bg-zinc-300 dark:bg-gray-500 rounded-full opacity-90 blur-[100px]" />
         <div className="absolute bottom-8 -left-10 w-[72%] h-8 bg-blue-500 rounded-full opacity-90 blur-[100px]" />
-        <h1 className="text-white text-2xl font-bold mb-2">Random Chat</h1>
-        <p className="text-zinc-400 mb-8 text-sm">
+        <h1 className="text-zinc-900 dark:text-white text-2xl font-bold mb-2">Random Chat</h1>
+        <p className="text-zinc-600 dark:text-zinc-400 mb-8 text-sm">
           Terhubung dengan orang asing secara acak
         </p>
         <button
@@ -89,7 +89,7 @@ export default function ChatBox() {
         </button>
         <button
           onClick={logout}
-          className="text-white hover:underline cursor-pointer"
+          className="text-zinc-700 dark:text-white hover:underline cursor-pointer"
         >
           Logout
         </button>
@@ -100,16 +100,16 @@ export default function ChatBox() {
 
   if (status === 'waiting') {
     return (
-      <div className="w-full h-screen flex flex-col items-center justify-center bg-[#030303]">
-        <div className="absolute -top-10 right-10 w-[72%] h-12 bg-gray-500 rounded-full opacity-90 blur-[100px]" />
+      <div className="w-full h-screen flex flex-col items-center justify-center bg-zinc-100 dark:bg-[#030303]">
+        <div className="absolute -top-10 right-10 w-[72%] h-12 bg-zinc-300 dark:bg-gray-500 rounded-full opacity-90 blur-[100px]" />
         <div className="absolute bottom-8 -left-10 w-[72%] h-8 bg-blue-500 rounded-full opacity-90 blur-[100px]" />
         <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-6" />
-        <p className="text-zinc-300 text-lg">Mencari partner...</p>
+        <p className="text-zinc-700 dark:text-zinc-300 text-lg">Mencari partner...</p>
         <button
           onClick={() => {
             setStatus('idle');
           }}
-          className="mt-6 text-zinc-500 hover:text-zinc-300 text-sm transition"
+          className="mt-6 text-zinc-500 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 text-sm transition"
         >
           Batalkan
         </button>
@@ -119,18 +119,18 @@ export default function ChatBox() {
 
 
   return (
-    <div className="w-full flex justify-center">
-      <div className="flex flex-col bg-[#030303] max-w-screen max-h-screen pb-16 border border-zinc-300 border-opacity-30 rounded-md relative p-5 w-full h-screen justify-between overflow-y-auto overflow-x-hidden">
+    <div className="w-full flex justify-center bg-zinc-100 dark:bg-[#030303]">
+      <div className="flex flex-col bg-zinc-100 dark:bg-[#030303] max-w-screen max-h-screen pb-16 border border-zinc-300 border-opacity-70 dark:border-opacity-30 rounded-md relative p-5 w-full h-screen justify-between overflow-y-auto overflow-x-hidden">
 
         {/* Background Blur */}
-        <div className="absolute -top-10 -right-10 w-[72%] h-12 bg-gray-500 rounded-full opacity-90 blur-[100px]" />
+        <div className="absolute -top-10 -right-10 w-[72%] h-12 bg-zinc-300 dark:bg-gray-500 rounded-full opacity-90 blur-[100px]" />
         <div className="absolute -bottom-10 -left-10 w-[72%] h-8 bg-blue-500 rounded-full opacity-90 blur-[100px]" />
 
         {/* Header */}
-        <div className="flex items-center justify-between mb-4 border-b border-zinc-700 pb-3">
+        <div className="flex items-center justify-between mb-4 border-b border-zinc-300 dark:border-zinc-700 pb-3">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-green-500 rounded-full" />
-            <span className="text-zinc-300 text-sm">Partner ditemukan</span>
+            <span className="text-zinc-700 dark:text-zinc-300 text-sm">Partner ditemukan</span>
           </div>
           <button
             onClick={() => {
@@ -148,7 +148,7 @@ export default function ChatBox() {
         {/* Messages */}
         <div className="flex flex-col w-full mb-12">
           {chats.length === 0 && (
-            <p className="text-zinc-600 text-sm text-center mt-10">
+            <p className="text-zinc-500 dark:text-zinc-600 text-sm text-center mt-10">
               Mulai percakapan! Ketik @AI untuk mengobrol dengan AI.
             </p>
           )}
@@ -182,16 +182,16 @@ export default function ChatBox() {
                 <div
                   className={`w-100 min-h-14 border rounded-md flex items-center px-3 py-2 relative ${
                     isAI
-                      ? 'bg-blue-950 border-blue-700 border-opacity-50 text-blue-200'
-                      : 'bg-[#030303] border-zinc-300 border-opacity-30 text-zinc-300'
+                      ? 'bg-blue-100 dark:bg-blue-950 border-blue-300 dark:border-blue-700 border-opacity-70 dark:border-opacity-50 text-blue-900 dark:text-blue-200'
+                      : 'bg-white dark:bg-[#030303] border-zinc-300 dark:border-zinc-300 border-opacity-70 dark:border-opacity-30 text-zinc-800 dark:text-zinc-300'
                   }`}
                 >
                   <span>
-                    <span className="font-semibold text-white">{sender}:</span>{' '}
+                    <span className="font-semibold text-zinc-900 dark:text-white">{sender}:</span>{' '}
                     {message}
                   </span>
                   <div
-                    className={`absolute -bottom-6 text-zinc-600 text-xs ${
+                    className={`absolute -bottom-6 text-zinc-500 dark:text-zinc-600 text-xs ${
                       isMe ? 'right-0' : 'left-0'
                     }`}
                   >
@@ -215,14 +215,14 @@ export default function ChatBox() {
         
         <form
           onSubmit={handleSubmit}
-          className="flex gap-3 border-t border-zinc-700 pt-4 fixed bottom-5 left-10 right-10 rounded-2xl px-2"
+          className="flex gap-3 border-t border-zinc-300 dark:border-zinc-700 pt-4 fixed bottom-5 left-10 right-10 rounded-2xl px-2"
         >
           <input
             autoComplete="off"
             onChange={(event) => setText(event.target.value)}
             value={text}
             placeholder="Type a message... (ketik @AI untuk tanya AI)"
-            className="flex-1 bg-zinc-900 text-white px-4 py-2 rounded-md border border-zinc-700 focus:outline-none"
+            className="flex-1 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white px-4 py-2 rounded-md border border-zinc-300 dark:border-zinc-700 focus:outline-none"
           />
           <button className="bg-blue-600 px-5 py-2 rounded-md text-white hover:bg-blue-700 transition">
             Send
