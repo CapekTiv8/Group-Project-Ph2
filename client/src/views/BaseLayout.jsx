@@ -5,7 +5,6 @@ export default function BaseLayout() {
   const {isDark, toggleTheme} = useDarkMode();
   return (
     <>
-    <button onClick={toggleTheme}>{isDark ? "Light" : "Dark"}</button>
       <Outlet />
       {/* <Header/> */}
     </>
