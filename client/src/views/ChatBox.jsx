@@ -1,13 +1,12 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { io } from 'socket.io-client';
-import { useAuth } from '../context/LoginContext';
 import { useDarkMode } from '../context/Darkmode';
-
-const socket = io('https://group-project-ph2-production.up.railway.app');
+import baseUrl from '../constant/baseUrl';
 
 export default function ChatBox() {
   const {isDark, toggleTheme} = useDarkMode();
+  const socketRef = useRef(null);
   const [text, setText] = useState('');
   const [chats, setChats] = useState([]);
   const [room, setRoom] = useState(null);
@@ -16,7 +15,7 @@ export default function ChatBox() {
   const navigate = useNavigate(); 
 
   function findPartner() {
-    socket.emit('find:partner');
+    socketRef.current?.emit('find:partner');
     setStatus('waiting');
   }
 
@@ -24,7 +23,7 @@ export default function ChatBox() {
     event.preventDefault();
     try {
       if (!text.trim()) return;
-      socket.emit('chat:message', {
+      socketRef.current?.emit('chat:message', {
         room,
         username,
         text,
@@ -42,6 +41,12 @@ export default function ChatBox() {
   }
 
   useEffect(() => {
+    const socket = io(baseUrl, {
+      transports: ['websocket', 'polling'],
+    });
+
+    socketRef.current = socket;
+
     socket.on('waiting', () => {
       setStatus('waiting');
     });
@@ -71,6 +76,8 @@ export default function ChatBox() {
       socket.off('matched');
       socket.off('partner:left');
       socket.off('chat:message');
+      socket.disconnect();
+      socketRef.current = null;
     };
   }, []);
 
@@ -138,7 +145,7 @@ export default function ChatBox() {
           </div>
           <button
             onClick={() => {
-              socket.emit('leave:room', room); // notify server & partner
+              socketRef.current?.emit('leave:room', room); // notify server & partner
               setRoom(null);
               setChats([]);
               setStatus('idle'); // yang klik tombol balik ke idle

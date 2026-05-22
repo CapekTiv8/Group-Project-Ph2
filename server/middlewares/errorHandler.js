@@ -5,11 +5,16 @@ const errorHandler = (error, req, res, next) => {
   let status = 500;
 
   if (
+    error.name === 'SequelizeValidationError' ||
     error.name === 'SequelizeConstraintError' ||
     error.name === 'SequelizeUniqueConstraintError'
   ) {
     status = 400;
     message = error.errors[0].message;
+  }
+
+  if (error.name === 'SequelizeConnectionError') {
+    message = 'Database connection failed';
   }
 
   if (error.name === 'EmailBadReq') {
@@ -30,6 +35,11 @@ const errorHandler = (error, req, res, next) => {
   if (error.name === 'LoginError') {
     status = 400;
     message = 'Invalid email/password';
+  }
+
+  if (error instanceof SyntaxError && error.status === 400 && 'body' in error) {
+    status = 400;
+    message = 'Invalid JSON format';
   }
 
   if (error.name === 'Unauthorized') {

@@ -44,8 +44,8 @@ function socketIo(io) {
           return `${e.username}: ${e.text}`;
         });
 
-        let response = await AiController.getReply(formattedMessages, msg);
         try {
+          const response = await AiController.getReply(formattedMessages, msg.text);
           roomChats[room].push({
             username: 'AI',
             text: response,
